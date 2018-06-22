@@ -1,0 +1,9 @@
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\bin\Debug\Missing_Data.exe.config
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\bin\Debug\Missing_Data.exe
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\bin\Debug\Missing_Data.pdb
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\obj\Debug\Missing_Data.csprojResolveAssemblyReference.cache
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\obj\Debug\Missing_Data.Missing_Data.resources
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\obj\Debug\Missing_Data.Properties.Resources.resources
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\obj\Debug\Missing_Data.csproj.GenerateResource.Cache
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\obj\Debug\Missing_Data.exe
+F:\ThucTap_57CNTT2\Program\Missing_Data\Missing_Data\obj\Debug\Missing_Data.pdb
