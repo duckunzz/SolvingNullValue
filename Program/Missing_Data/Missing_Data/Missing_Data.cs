@@ -91,6 +91,7 @@ namespace Missing_Data
         //Kiem tra Null Value
         public bool check(string Year, string Month, string Dust, string Suspend, string Rising, string Rain, string Sun, string Dry, string Max, string Min, string Humidity, string Evaporation, string Pressure)
         {
+            nullValue = 0;
             ArrayList data = new ArrayList();
             data.Add(Year);
             data.Add(Month);
@@ -308,20 +309,21 @@ namespace Missing_Data
                 Nho vao viec nhap du lieu thang, nam lien tuc
              */
             int month = 0, year = 0;
-            if (txtID.Text == xl.Count.ToString())
+            txtRow.Text = dataWeather.CurrentRow.Index.ToString();
+            if (txtID.Text == (dataWeather.CurrentRow.Index + 1).ToString())
             {
                 //Truong hop sua, select row la hang truoc do, luu y sua hang 1 se bi loi
                 //Lay du lieu thang cua ban ghi phia tren
-                month = Convert.ToInt32(dataWeather.Rows[xl.Position - 1].Cells[2].Value.ToString());
+                month = Convert.ToInt32(dataWeather.Rows[dataWeather.CurrentRow.Index - 1].Cells[2].Value.ToString());
                 //Lay du lieu nam cua ban ghi phia tren
-                year = Convert.ToInt32(dataWeather.Rows[xl.Position - 1].Cells[1].Value.ToString());
+                year = Convert.ToInt32(dataWeather.Rows[dataWeather.CurrentRow.Index - 1].Cells[1].Value.ToString());
             }
             else
             {
                 //Truong hop them, select row luon la hang cuoi
-                //Lay du lieu thang cua ban ghi phia tren
+                //Lay du lieu thang cua ban ghi cuoi cung
                 month = Convert.ToInt32(dataWeather.CurrentRow.Cells[2].Value.ToString());
-                //Lay du lieu nam cua ban ghi phia tren
+                //Lay du lieu nam cua ban ghi cuoi cung
                 year = Convert.ToInt32(dataWeather.CurrentRow.Cells[1].Value.ToString());
             }
             txtID1.Text = txtID.Text;

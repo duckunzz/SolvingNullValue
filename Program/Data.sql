@@ -283,7 +283,7 @@ END
 GO
 
 --Search
-CREATE PROC Data_TiemKiem
+CREATE PROC Data_TimKiem
 	@ID INT
 AS
 BEGIN

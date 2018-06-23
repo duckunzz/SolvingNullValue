@@ -94,6 +94,7 @@
             this.txtMonth1 = new System.Windows.Forms.TextBox();
             this.txtYear1 = new System.Windows.Forms.TextBox();
             this.txtID1 = new System.Windows.Forms.TextBox();
+            this.txtRow = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataWeather)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -785,6 +786,13 @@
             this.txtID1.Size = new System.Drawing.Size(100, 27);
             this.txtID1.TabIndex = 10;
             // 
+            // txtRow
+            // 
+            this.txtRow.Location = new System.Drawing.Point(582, 249);
+            this.txtRow.Name = "txtRow";
+            this.txtRow.Size = new System.Drawing.Size(100, 27);
+            this.txtRow.TabIndex = 11;
+            // 
             // Missing_Data
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -792,6 +800,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(1370, 718);
+            this.Controls.Add(this.txtRow);
             this.Controls.Add(this.txtID1);
             this.Controls.Add(this.txtYear1);
             this.Controls.Add(this.txtMonth1);
@@ -926,6 +935,7 @@
         private System.Windows.Forms.TextBox txtMonth1;
         private System.Windows.Forms.TextBox txtYear1;
         private System.Windows.Forms.TextBox txtID1;
+        private System.Windows.Forms.TextBox txtRow;
       
       
       
