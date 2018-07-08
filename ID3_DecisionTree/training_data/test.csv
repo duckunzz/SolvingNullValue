@@ -1,0 +1,11 @@
+Age;Competition;Type;Profit;
+Old;No;Soft;Down;
+Midle;Yes;Soft;Down;
+Midle;No;Hard;Up;
+Old;No;Hard;Down;
+New;No;Hard;Up;
+New;No;Soft;Up;
+Midle;No;Soft;Up;
+New;Yes;Soft;Up;
+Midle;Yes;Hard;Down;
+Old;Yes;Hard;Down;

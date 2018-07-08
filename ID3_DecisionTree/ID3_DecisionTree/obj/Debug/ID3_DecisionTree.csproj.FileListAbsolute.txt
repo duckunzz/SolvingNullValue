@@ -1,0 +1,6 @@
+F:\ThucTap_57CNTT2\Program\ID3_DecisionTree\ID3_DecisionTree\bin\Debug\ID3_DecisionTree.exe.config
+F:\ThucTap_57CNTT2\Program\ID3_DecisionTree\ID3_DecisionTree\bin\Debug\ID3_DecisionTree.exe
+F:\ThucTap_57CNTT2\Program\ID3_DecisionTree\ID3_DecisionTree\bin\Debug\ID3_DecisionTree.pdb
+F:\ThucTap_57CNTT2\Program\ID3_DecisionTree\ID3_DecisionTree\obj\Debug\ID3_DecisionTree.csprojResolveAssemblyReference.cache
+F:\ThucTap_57CNTT2\Program\ID3_DecisionTree\ID3_DecisionTree\obj\Debug\ID3_DecisionTree.exe
+F:\ThucTap_57CNTT2\Program\ID3_DecisionTree\ID3_DecisionTree\obj\Debug\ID3_DecisionTree.pdb
