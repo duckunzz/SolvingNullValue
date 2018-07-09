@@ -181,7 +181,7 @@ namespace Missing_Data
             { 
                 nullValue++;
             }
-            if (nullValue > 0)
+            if (nullValue > 0 && value == "")
             {
                 MessageBox.Show("Phát hiện thấy " + nullValue + " ô dữ liệu thiếu", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return true;
@@ -329,49 +329,70 @@ namespace Missing_Data
         //Xu ly cac button them xoa sua du lieu
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (check(txtYear.Text, txtMonth.Text, txtDust.Text, txtSuspend.Text, txtRising.Text, txtRain.Text, txtSun.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtHumidity.Text, txtEvaporation.Text, txtPressure.Text, "") == false)
+                {
+                    addData(txtID.Text, txtYear.Text, txtMonth.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtRain.Text, txtHumidity.Text, txtEvaporation.Text, txtSun.Text, txtPressure.Text, txtDust.Text, txtSuspend.Text, txtRising.Text);
+                    MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataWeather.DataSource = Data_DS();
+                    hienthiDSData();
+                }
+                else
+                {
+                    MessageBox.Show("Bạn có muốn ước lượng các giá trị thiếu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    solvingNullValues();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Thêm dữ liệu thất bại. Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            }
            
-            if (check(txtYear.Text, txtMonth.Text, txtDust.Text, txtSuspend.Text, txtRising.Text, txtRain.Text, txtSun.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtHumidity.Text, txtEvaporation.Text, txtPressure.Text, "") == false)
-            {
-                addData(txtID.Text, txtYear.Text, txtMonth.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtRain.Text, txtHumidity.Text, txtEvaporation.Text, txtSun.Text, txtPressure.Text, txtDust.Text, txtSuspend.Text, txtRising.Text);
-                MessageBox.Show("Thêm dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dataWeather.DataSource = Data_DS();
-                hienthiDSData();
-            }
-            else
-            {
-                MessageBox.Show("Bạn có muốn ước lượng các giá trị thiếu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                solvingNullValues();
-            }
+            
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            
-            if (check(txtYear.Text, txtMonth.Text, txtDust.Text, txtSuspend.Text, txtRising.Text, txtRain.Text, txtSun.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtHumidity.Text, txtEvaporation.Text, txtPressure.Text,"") == false)
+            try
             {
-                editData(txtID.Text, txtYear.Text, txtMonth.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtRain.Text, txtHumidity.Text, txtEvaporation.Text, txtSun.Text, txtPressure.Text, txtDust.Text, txtSuspend.Text, txtRising.Text);
-                MessageBox.Show("Sửa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dataWeather.DataSource = Data_DS();
-                hienthiDSData();
+                if (check(txtYear.Text, txtMonth.Text, txtDust.Text, txtSuspend.Text, txtRising.Text, txtRain.Text, txtSun.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtHumidity.Text, txtEvaporation.Text, txtPressure.Text, "") == false)
+                {
+                    editData(txtID.Text, txtYear.Text, txtMonth.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtRain.Text, txtHumidity.Text, txtEvaporation.Text, txtSun.Text, txtPressure.Text, txtDust.Text, txtSuspend.Text, txtRising.Text);
+                    MessageBox.Show("Sửa dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataWeather.DataSource = Data_DS();
+                    hienthiDSData();
+                }
+                else
+                {
+                    if (MessageBox.Show("Bạn có muốn chương trình dự đoán cho giá trị thiếu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+         MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                        solvingNullValues();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                if (MessageBox.Show("Bạn có muốn chương trình dự đoán cho giá trị thiếu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
-     MessageBoxDefaultButton.Button2) == DialogResult.Yes)
-                    solvingNullValues();
+                MessageBox.Show("Sửa thất bại! Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa thông tin này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
-     MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+            try
             {
-                deleteData(txtID.Text);
-                MessageBox.Show("Xóa dữ liệu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dataWeather.DataSource = Data_DS();
-                hienthiDSData();
-            }      
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa thông tin này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+     MessageBoxDefaultButton.Button2) == DialogResult.Yes)
+                {
+                    deleteData(txtID.Text);
+                    MessageBox.Show("Xóa dữ liệu thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dataWeather.DataSource = Data_DS();
+                    hienthiDSData();
+                }      
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Xóa thất bại! Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
+            }
         }
 
         private void solvingNullValues()
@@ -430,6 +451,7 @@ namespace Missing_Data
             }
             else
             {
+                nullValue--;
                 MessageBox.Show("Vui lòng nhấn Training dữ liệu với Rough Set Theory để chương trình có thể dự đoán!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
             }
         }
@@ -485,7 +507,7 @@ namespace Missing_Data
             var result = Tree.CalculateResult(decisionTree.Root, valuesForQuery, "");
             if (result.ToString().Equals("unknown")!= true)
             {
-                nullValue--;
+                //nullValue= -1;
                 string valueResult= "", setResult = "";
                 int vt = 0;
                 for (int i = result.Length - 1; i >= 0; i--)
@@ -500,6 +522,7 @@ namespace Missing_Data
             }
             else
             {
+                //nullValue--;
                 MessageBox.Show("Xin lỗi không thể dự đoán được giá trị thiếu! Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
             }
         }
