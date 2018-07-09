@@ -26,7 +26,7 @@ namespace Missing_Data
                                 + "\n+ Ngược lại các giá trị khác sẽ cần thực hiện Trainging theo hướng dẫn"
                                 + "\n+ Sau khi nhấn Training với Rough Set Theory, chúng ta có thể xem quá trình training"
                                 + "\n+ Nếu không lựa chọn xem, chương trình sẽ Training và ước lượng"
-                                + "\n+ Nếu xem thì một màn hình Console xuất hiện, nhấn 1 để training. Sau khi traing xong, nhấn HELP để xem các lựa chọn"
+                                + "\n+ Nếu xem thì một màn hình Console xuất hiện, nhấn 1 để training. Sau khi training xong, nhấn HELP để xem các lựa chọn"
                                 + "\n+ Vì còn nhiều hạn chế về kiến thức và kỹ năng nên chương trình chỉ có thể dự đoán được cho 1 trường thiếu"
                                 +"\n+ Chưa áp dụng được thuật toán đàn ong để phân lớp dữ liệu";
                                 
@@ -35,10 +35,6 @@ namespace Missing_Data
             lblNoDung.Text = "+ Xây dựng cây quyết định"
                             +"\n+ Lý thuyết tập thô"
                             + "\n+ Chọn thuộc tính có giá trị Pos lớn nhất để phân nhánh";
-
-        }
-
-
-        
+        }    
     }
 }

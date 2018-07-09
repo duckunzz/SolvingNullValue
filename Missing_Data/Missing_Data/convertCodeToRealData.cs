@@ -154,7 +154,7 @@ namespace Missing_Data
         {
 
             if (value == 0)
-                return new Random().Next(0);
+                return 0;
             else if (value == 1)
                 return new Random().Next(1, 4);
             else
@@ -175,7 +175,7 @@ namespace Missing_Data
         {
 
             if (value == 0)
-                return new Random().Next(0);
+                return 0;
             else if (value == 1)
                 return new Random().Next(1, 7);
             else

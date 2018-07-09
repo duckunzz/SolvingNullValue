@@ -47,6 +47,9 @@
     <Compile Include="Attributes.cs" />
     <Compile Include="convertCodeToRealData.cs" />
     <Compile Include="convertRealDataToCode.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="DataTraining.cs" />
+    <Compile Include="ExportData.cs" />
     <Compile Include="Help.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +67,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tree.cs" />
     <Compile Include="TreeNode.cs" />
+    <Compile Include="ViewTrainingData.cs" />
     <EmbeddedResource Include="Help.resx">
       <DependentUpon>Help.cs</DependentUpon>
     </EmbeddedResource>

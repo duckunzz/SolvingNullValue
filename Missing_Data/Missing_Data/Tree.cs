@@ -102,8 +102,7 @@ namespace Missing_Data
                     }
                 }
 
-                return root;
-            
+                return root; 
         }
 
         private static bool CheckIfIsLeaf(TreeNode root, DataTable data, string attributeToCheck)
@@ -163,23 +162,21 @@ namespace Missing_Data
 
             // remove column which was already used as node            
             smallerData.Columns.Remove(smallerData.Columns[rootTableIndex]);
-            //if (checkRDT(smallerData)
             return smallerData;
         }
+        //check he co thuan nhat
         private static bool checkData(DataTable data)
         {
             var differntAttributenames = Attributes.GetDifferentAttributeNamesOfColumn(data, data.Columns.Count - 1);
-            Console.WriteLine("He thuan nhat khong? " + differntAttributenames.Count);
             if (differntAttributenames.Count != 1)
                 return false;
-            
             return true;
 
         }
         // Xac dinh nut goc
         private static TreeNode GetRootNode(DataTable data, string edge)
         {
-            Console.WriteLine("Edge + " + edge);
+            //Kiem tra he thong tin la thuan nhat?
             if (checkData(data))
             {
                 
@@ -188,44 +185,40 @@ namespace Missing_Data
                         return new TreeNode(true, edge, data.Rows[i][data.Columns.Count - 1].ToString());
             }
             
-                List<Attributes> attributes = new List<Attributes>();
-                var highestPos = 0;
-                var highestPosIndex = 0;
-                //int highestInformationGainIndex = -1;
-                //double highestInformationGain = double.MinValue;
+            List<Attributes> attributes = new List<Attributes>();
+            var highestPos = 0;
+            var highestPosIndex = 0;      
+            //Lay ten thuoc tinh, va gia tri cua tung thuoc tinh tuong ung voi moi cot trong data
 
-                // Get all names, amount of attributes and attributes for every column        
-                //Lay ten thuoc tinh, va gia tri cua tung thuoc tinh tuong ung voi moi cot trong data
+            for (int i = 0; i < data.Columns.Count; i++)
+            {
+                var differentAttributenames = Attributes.GetDifferentAttributeNamesOfColumn(data, i);
+                var indexOfValueAttribute = Attributes.GetIndexValueOfAttribute(data, Attributes.GetDifferentAttributeNamesOfColumn(data, i), i);
+                attributes.Add(new Attributes(data.Columns[i].ToString(), differentAttributenames, indexOfValueAttribute));
 
-                for (int i = 0; i < data.Columns.Count; i++)
+            }
+
+            //Tinh Pos cho tung thuoc tinh
+            for (int i = 0; i < attributes.Count - 1; i++)
+            {
+                Console.WriteLine("---------");
+                Console.WriteLine("Thuộc tính: " + attributes[i].Name);
+                attributes[i].PosValue = CaculatePosValue(data, attributes[i], attributes[attributes.Count - 1]);
+                Console.WriteLine("Giá trị Pos: " + attributes[i].PosValue);
+
+                //Thuoc tinh co Pos lon nhat se chon lam nut goc
+                if (attributes[i].PosValue > highestPos)
                 {
-                    var differentAttributenames = Attributes.GetDifferentAttributeNamesOfColumn(data, i);
-                    var indexOfValueAttribute = Attributes.GetIndexValueOfAttribute(data, Attributes.GetDifferentAttributeNamesOfColumn(data, i), i);
-                    attributes.Add(new Attributes(data.Columns[i].ToString(), differentAttributenames, indexOfValueAttribute));
-
+                    highestPos = attributes[i].PosValue;
+                    highestPosIndex = i;
                 }
+            }
 
-                //Tinh Pos cho tung thuoc tinh
-                for (int i = 0; i < attributes.Count - 1; i++)
-                {
-                    Console.WriteLine("---------");
-                    Console.WriteLine("Thuộc tính: " + attributes[i].Name);
-                    attributes[i].PosValue = CaculatePosValue(data, attributes[i], attributes[attributes.Count - 1]);
-                    Console.WriteLine("Giá trị Pos: " + attributes[i].PosValue);
-
-                    //Thuoc tinh co Pos lon nhat se chon lam nut goc
-                    if (attributes[i].PosValue > highestPos)
-                    {
-                        highestPos = attributes[i].PosValue;
-                        highestPosIndex = i;
-                    }
-                }
-
-                Console.WriteLine("---------------------------");
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Thuộc tính lựa chọn: " + attributes[highestPosIndex].Name);
-                Console.ResetColor();
-                return new TreeNode(attributes[highestPosIndex].Name, highestPosIndex, attributes[highestPosIndex], edge);
+            Console.WriteLine("---------------------------");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Thuộc tính lựa chọn: " + attributes[highestPosIndex].Name);
+            Console.ResetColor();
+            return new TreeNode(attributes[highestPosIndex].Name, highestPosIndex, attributes[highestPosIndex], edge);
            
         }
         private static int CaculatePosValue(DataTable data, Attributes attribute, Attributes attributeDecision)
@@ -254,7 +247,6 @@ namespace Missing_Data
             int cnt = 0;
             if (i > j)
                 return false;
-           // Console.Write("i= " + i + " j= " + j);
             for (i = 0; i < SelectAttribute.Count; i++)
             {
                 bool check = false;
@@ -282,7 +274,6 @@ namespace Missing_Data
             if (root.IsLeaf)
             {
                 result = root.Edge.ToLower() + " --> " + root.Name.ToUpper();
-                //result = root.Name.ToString();
                 valueFound = true;
             }
             else
@@ -309,37 +300,6 @@ namespace Missing_Data
 
             return result;
         }
-       
-           public static void WriteToCsvFile( DataTable dataTable, string filePath)
-            {
-                StringBuilder fileContent = new StringBuilder();
-
-                foreach (var col in dataTable.Columns)
-                {
-                    fileContent.Append(col.ToString() + ",");
-                }
-
-                fileContent.Replace(",", System.Environment.NewLine, fileContent.Length - 1, 1);
-
-                foreach (DataRow dr in dataTable.Rows)
-                {
-                    foreach (var column in dr.ItemArray)
-                    {
-                        fileContent.Append("\"" + column.ToString() + "\",");
-                    }
-
-                    fileContent.Replace(",", System.Environment.NewLine, fileContent.Length - 1, 1);
-                }
-
-               System.IO.File.WriteAllText(filePath, fileContent.ToString());
-            }
-            public static void ExportTree(string filePath)
-           {
-               System.IO.File.WriteAllText(filePath, fileContent1.ToString());
-           }
-           
-           
-           
-        }
+   }
     
 }

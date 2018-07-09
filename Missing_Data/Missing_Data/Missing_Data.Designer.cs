@@ -83,7 +83,7 @@
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnFirst = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnID3 = new System.Windows.Forms.Button();
+            this.btnDecisionTreeUsingRoughSet = new System.Windows.Forms.Button();
             this.btnBee = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.lblRowCount = new System.Windows.Forms.Label();
@@ -656,7 +656,7 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.groupBox3.Controls.Add(this.btnID3);
+            this.groupBox3.Controls.Add(this.btnDecisionTreeUsingRoughSet);
             this.groupBox3.Controls.Add(this.btnBee);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.Location = new System.Drawing.Point(1031, 593);
@@ -666,18 +666,18 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Training";
             // 
-            // btnID3
+            // btnDecisionTreeUsingRoughSet
             // 
-            this.btnID3.BackColor = System.Drawing.Color.Blue;
-            this.btnID3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnID3.ForeColor = System.Drawing.Color.Yellow;
-            this.btnID3.Location = new System.Drawing.Point(18, 61);
-            this.btnID3.Name = "btnID3";
-            this.btnID3.Size = new System.Drawing.Size(246, 39);
-            this.btnID3.TabIndex = 0;
-            this.btnID3.Text = "Decision Tree Using Rough Set";
-            this.btnID3.UseVisualStyleBackColor = false;
-            this.btnID3.Click += new System.EventHandler(this.btnID3_Click);
+            this.btnDecisionTreeUsingRoughSet.BackColor = System.Drawing.Color.Blue;
+            this.btnDecisionTreeUsingRoughSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDecisionTreeUsingRoughSet.ForeColor = System.Drawing.Color.Yellow;
+            this.btnDecisionTreeUsingRoughSet.Location = new System.Drawing.Point(18, 61);
+            this.btnDecisionTreeUsingRoughSet.Name = "btnDecisionTreeUsingRoughSet";
+            this.btnDecisionTreeUsingRoughSet.Size = new System.Drawing.Size(246, 39);
+            this.btnDecisionTreeUsingRoughSet.TabIndex = 0;
+            this.btnDecisionTreeUsingRoughSet.Text = "Decision Tree Using Rough Set";
+            this.btnDecisionTreeUsingRoughSet.UseVisualStyleBackColor = false;
+            this.btnDecisionTreeUsingRoughSet.Click += new System.EventHandler(this.btnDecisionTreeUsingRoughSet_Click);
             // 
             // btnBee
             // 
@@ -690,6 +690,7 @@
             this.btnBee.TabIndex = 0;
             this.btnBee.Text = "Bee\'s Algorithm and Rough Set";
             this.btnBee.UseVisualStyleBackColor = false;
+            this.btnBee.Click += new System.EventHandler(this.btnBee_Click);
             // 
             // groupBox4
             // 
@@ -890,7 +891,7 @@
         private System.Windows.Forms.Label lblRowCount;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblCurrentRow;
-        private System.Windows.Forms.Button btnID3;
+        private System.Windows.Forms.Button btnDecisionTreeUsingRoughSet;
         private System.Windows.Forms.Button btnHelp;
         
       
