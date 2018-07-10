@@ -10,7 +10,7 @@ namespace Missing_Data
 {
     class Tree
     {
-        public static StringBuilder fileContent1 = new StringBuilder();
+        public static StringBuilder fileContent1;
         
         public TreeNode Root { get; set; }
 
@@ -83,9 +83,7 @@ namespace Missing_Data
         }
         //Training cay quyet dinh, tim thuoc tinh phan nhanh
         public static TreeNode Learn(DataTable data, string edgeName)
-        {
-
-                
+        {  
                 TreeNode root = GetRootNode(data, edgeName);
 
                 foreach (var item in root.NodeAttribute.DifferentAttributeNames)

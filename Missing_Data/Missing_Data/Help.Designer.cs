@@ -28,14 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Help));
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblHuongDan = new System.Windows.Forms.Label();
             this.lblSVTH = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblNoDung = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.lblNoDung = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -93,6 +94,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nội dung";
             // 
+            // lblNoDung
+            // 
+            this.lblNoDung.AutoSize = true;
+            this.lblNoDung.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoDung.Location = new System.Drawing.Point(41, 31);
+            this.lblNoDung.Name = "lblNoDung";
+            this.lblNoDung.Size = new System.Drawing.Size(21, 20);
+            this.lblNoDung.TabIndex = 5;
+            this.lblNoDung.Text = "...";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lblHuongDan);
@@ -115,16 +126,6 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sinh viên thực hiện";
             // 
-            // lblNoDung
-            // 
-            this.lblNoDung.AutoSize = true;
-            this.lblNoDung.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNoDung.Location = new System.Drawing.Point(41, 31);
-            this.lblNoDung.Name = "lblNoDung";
-            this.lblNoDung.Size = new System.Drawing.Size(21, 20);
-            this.lblNoDung.TabIndex = 5;
-            this.lblNoDung.Text = "...";
-            // 
             // Help
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -135,6 +136,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Help";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hướng dẫn về chương trình";

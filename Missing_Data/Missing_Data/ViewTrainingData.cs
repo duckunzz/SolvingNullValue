@@ -82,8 +82,9 @@ namespace Missing_Data
                     else if (input.ToUpper().Equals("PRINT"))
                     {
                         Console.WriteLine();
+                        Tree.fileContent1 = new StringBuilder();
                         Tree.Print(decisionTree.Root, decisionTree.Root.Name.ToUpper(), data);
-                        ExportData.ExportTree("F:\\ThucTap_57CNTT2\\Program\\Missing_Data\\Missing_Data\\export\\Rules.txt");
+                        ExportData.ExportTree("export\\Rules.txt");
                         i--;
                     }
                     else if (input.ToUpper().Equals("MAINMENU"))

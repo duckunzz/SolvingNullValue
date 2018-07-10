@@ -36,7 +36,6 @@ namespace Missing_Data
             position();
         }
         
-
         void hienthiDSData()
         {
             xl.DataSource = dataWeather.DataSource;
@@ -253,14 +252,14 @@ namespace Missing_Data
                 }
                 else
                 {
-                    if (MessageBox.Show("Bạn có muốn chương trình dự đoán cho giá trị thiếu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                    if (MessageBox.Show("Bạn có muốn chương trình dự đoán cho giá trị thiếu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information,
          MessageBoxDefaultButton.Button1) == DialogResult.Yes)
                         solvingNullValues();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Thêm dữ liệu thất bại. Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                MessageBox.Show("Thêm dữ liệu thất bại. \nVui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             }
            
             
@@ -279,14 +278,14 @@ namespace Missing_Data
                 }
                 else
                 {
-                    if (MessageBox.Show("Bạn có muốn chương trình dự đoán cho giá trị thiếu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                    if (MessageBox.Show("Bạn có muốn chương trình dự đoán cho giá trị thiếu?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information,
          MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                         solvingNullValues();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sửa thất bại! Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
+                MessageBox.Show("Sửa thất bại! \nVui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
             }
         }
 
@@ -305,7 +304,7 @@ namespace Missing_Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Xóa thất bại! Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
+                MessageBox.Show("Xóa thất bại! \nVui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
         }
 
@@ -368,11 +367,11 @@ namespace Missing_Data
             else
             {
                 if (nullValue >= 2)
-                    MessageBox.Show("Xin lỗi chương trình chỉ có thể dự đoán cho một trường thiếu!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    MessageBox.Show("Xin lỗi chương trình chỉ có thể dự đoán cho một trường thiếu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
                 {
                     nullValue--;
-                    MessageBox.Show("Vui lòng nhấn Training với Decision Tree Using Rough Set để chương trình có thể dự đoán!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    MessageBox.Show("Vui lòng nhấn Training với Decision Tree Using Rough Set để chương trình có thể dự đoán!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }       
             }
         }
@@ -391,29 +390,34 @@ namespace Missing_Data
         //Training du lieu
         private void btnDecisionTreeUsingRoughSet_Click(object sender, EventArgs e)
         {
+            //Kiem tra xem co thuoc tinh quyet dinh chua, do chinh la truong thieu
             if (nullAttribute.ToString() != "")
             {
                 var decisionTree = new Tree();
                 Program.data = Database.Data_DS();
-                ExportData.WriteToCsvFile(Program.data, "F:\\ThucTap_57CNTT2\\Program\\Missing_Data\\Missing_Data\\export\\Realdata.csv");
-                MessageBox.Show("Xuất file dữ liệu gốc thành công!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                ExportData.WriteToCsvFile(Program.data, "export\\Realdata.csv");
+                MessageBox.Show("Xuất file dữ liệu gốc thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Program.data = Program.convertDataToCode(Program.data);
-                ExportData.WriteToCsvFile(Program.data, "F:\\ThucTap_57CNTT2\\Program\\Missing_Data\\Missing_Data\\export\\CodedataConvert.csv");
-                MessageBox.Show("Xuất file chuyển đổi dữ liệu thành công!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                ExportData.WriteToCsvFile(Program.data, "export\\CodedataConvert.csv");
+                MessageBox.Show("Xuất file chuyển đổi dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DataTable dataTrain = DataTraining.DataTrain(Program.data, nullAttribute);
-                ExportData.WriteToCsvFile(dataTrain, "F:\\ThucTap_57CNTT2\\Program\\Missing_Data\\Missing_Data\\export\\dataTraining.csv");
-                MessageBox.Show("Xuất file training đã chuyển đổi thành công!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                if (MessageBox.Show("Bạn có muốn xem quá trình Training Data? Giá trị dự đoán phải nhập thủ công", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
+                ExportData.WriteToCsvFile(dataTrain, "export\\dataTraining.csv");
+                MessageBox.Show("Xuất file training đã chuyển đổi thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (MessageBox.Show("Bạn có muốn xem quá trình Training Data? \nGiá trị dự đoán phải nhập thủ công", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning,
          MessageBoxDefaultButton.Button2) == DialogResult.Yes)
                 {
                     ViewTrainingData.console(dataTrain);
                 }
                 else
                 {
+                    var watch = System.Diagnostics.Stopwatch.StartNew();
                     decisionTree.Root = Tree.Learn(dataTrain, "");
+                    Tree.fileContent1 = new StringBuilder();
                     Tree.Print(decisionTree.Root, decisionTree.Root.Name.ToUpper(), dataTrain);
-                    ExportData.ExportTree("F:\\ThucTap_57CNTT2\\Program\\Missing_Data\\Missing_Data\\export\\Rules.txt");
-                    MessageBox.Show("Quá trình Training hoàn thành! Xuất thành công file chứa các luật!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    ExportData.ExportTree("export\\Rules.txt");
+                    watch.Stop();
+                    var elapsedMs = watch.ElapsedMilliseconds;
+                    MessageBox.Show("Quá trình Training hoàn thành! \nXuất thành công file chứa các luật! \nThời gian tốn: " + elapsedMs + " ms.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 //Truy van de tim ra gia tri uoc luong cho truong thieu
                 var valuesForQuery = new Dictionary<string, string>();
@@ -440,11 +444,15 @@ namespace Missing_Data
                     for (int i = vt; i < result.Length; i++)
                         valueResult += result[i].ToString();
                     if (valueResult.ToString().Equals("unknown") != true && valueResult.Length > 0)
+                    {
+              
                         setResult = convertCodeToRealData.checkNameOfAtrributeForConvert(nullAttribute.ToString(), float.Parse(valueResult.ToString())).ToString();
+                        MessageBox.Show("Giá trị đã được ước lượng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     else
                     {
                         setResult = "unknown";
-                        MessageBox.Show("Xin lỗi không thể dự đoán được giá trị thiếu! Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
+                        MessageBox.Show("Xin lỗi không thể dự đoán được giá trị thiếu! Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
 
                     check(txtYear.Text, txtMonth.Text, txtDust.Text, txtSuspend.Text, txtRising.Text, txtRain.Text, txtSun.Text, txtDry.Text, txtMax.Text, txtMin.Text, txtHumidity.Text, txtEvaporation.Text, txtPressure.Text, setResult.ToString());
@@ -452,11 +460,11 @@ namespace Missing_Data
                 else
                 {
                     //nullValue--;
-                    MessageBox.Show("Xin lỗi không thể dự đoán được giá trị thiếu! Vui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);
+                    MessageBox.Show("Xin lỗi không thể dự đoán được giá trị thiếu! \nVui lòng kiểm tra lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
             }
             else
-                MessageBox.Show("Thiếu thông tin! Quá trình Training vẫn chưa thể tiến hành!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Stop);   
+                MessageBox.Show("Thiếu thông tin! \nQuá trình Training vẫn chưa thể tiến hành!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);   
         }
 
         public string getValue(string value)
@@ -496,7 +504,7 @@ namespace Missing_Data
 
         private void btnBee_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Xin lỗi hiện tại chương trình vẫn chưa mở được tính năng Training này!", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            MessageBox.Show("Xin lỗi hiện tại chương trình vẫn chưa mở được tính năng Training này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
 
